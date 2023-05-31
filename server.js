@@ -1,6 +1,8 @@
-const WebSocket = require('ws');
+const WebSocket = require('ws').Server;
+const http = require('http')
 
-const wss = new WebSocket.Server({ port: 5000 }); // Replace with your desired port number
+
+const wss = new WebSocket({ port: 5000 }); // Replace with your desired port number
 
 wss.on('connection', (ws) => {
   console.log('Client connected');
