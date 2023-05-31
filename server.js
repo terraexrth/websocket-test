@@ -4,6 +4,18 @@ const http = require('http')
 
 const wss = new WebSocket({ port: 5000 }); // Replace with your desired port number
 
+const server = http.createServer((req, res) => {
+	if (req.url === '/favicon.ico') {
+	  // Handle the request for favicon.ico
+	  res.writeHead(200, { 'Content-Type': 'image/x-icon' });
+	  res.end();
+	} else {
+	  // Handle other requests
+	  res.writeHead(404);
+	  res.end();
+	}
+  });
+  
 wss.on('connection', (ws) => {
   console.log('Client connected');
 

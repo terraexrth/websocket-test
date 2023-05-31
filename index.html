@@ -8,8 +8,9 @@
   <div id="position"></div>
 
   <script>
-    const ws = new WebSocket('https://websocket-location.onrender.com/'); // Replace with your WebSocket server URL
+    const ws = new WebSocket('wss://websocket-location.onrender.com/'); // Replace with your WebSocket server URL
 
+	
     ws.onmessage = (event) => {
       try {
         const position = JSON.parse(event.data);
