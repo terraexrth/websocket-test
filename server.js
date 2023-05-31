@@ -2,7 +2,7 @@ const WebSocket = require('ws').Server;
 const http = require('http')
 
 
-const wss = new WebSocket({ port: 5000 }); // Replace with your desired port number
+ // Replace with your desired port number
 
 const server = http.createServer((req, res) => {
 	if (req.url === '/favicon.ico') {
@@ -15,6 +15,8 @@ const server = http.createServer((req, res) => {
 	  res.end();
 	}
   });
+
+const wss = new WebSocket({ server });
   
 wss.on('connection', (ws) => {
   console.log('Client connected');
