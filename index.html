@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WebSocket Position Viewer</title>
+</head>
+<body>
+  <h1>Position Viewer</h1>
+  <div id="position"></div>
+
+  <script>
+    const ws = new WebSocket('ws://192.168.137.1:5000'); // Replace with your WebSocket server URL
+
+    ws.onmessage = (event) => {
+      try {
+        const position = JSON.parse(event.data);
+        console.log('Received position:', position);
+
+        // Display the position on the HTML page
+		const dataContainer = document.getElementById('position');
+        const dataElement = document.createElement('p');
+        dataElement.textContent = `Received position: ${JSON.stringify(position)}`;
+        dataContainer.appendChild(dataElement);
+        dataContainer.appendChild(document.createElement('br')); // Add a line break
+      } catch (error) {
+        console.error('Error parsing message:', error);
+      }
+    };
+
+    ws.onclose = () => {
+      console.log('WebSocket connection closed');
+    };
+  </script>
+</body>
+</html>
